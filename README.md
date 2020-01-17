@@ -1,2 +1,2 @@
-# repositorio  FICHERO  DE  DOCUMENTACION  DE MI PROYECTO
+* FICHERO  DE  PRUEBA
 esto es una descripcion  de mi proyecto
