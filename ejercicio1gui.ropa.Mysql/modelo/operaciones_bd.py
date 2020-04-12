@@ -19,7 +19,7 @@ def registro_ropa(ropa):
     sql = constantes_sql.SQL_INSERCION_ROPA
     conexion = conectar()
     cursor = conexion.cursor()
-    valores_a_insertar = (ropa.prenda, ropa.talla ,ropa.color, ropa.precio ,ropa.temporada)
+    valores_a_insertar = (ropa.prenda, ropa.talla ,ropa.color, ropa.temporada ,ropa.precio)
     cursor.execute(sql , valores_a_insertar )
     conexion.commit()
     conexion.disconnect()
@@ -32,3 +32,14 @@ def obtener_ropa():
     lista_resultado= cursor.fetchall()
     conexion.disconnect()
     return lista_resultado
+
+def borrar_ropa(id_ropa):
+    sql = constantes_sql.SQL_BORRAR_ROPA
+    conexion = conectar()
+    cursor = conexion.cursor()
+    val = (id_ropa,)
+    cursor.execute(sql,val)
+    conexion.commit()
+    conexion.disconnect()
+    
+    

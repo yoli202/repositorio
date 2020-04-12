@@ -6,7 +6,8 @@ ventana_list_widget, ventana_table_widget
 import sys
 from modelo.clases import Prenda
 from modelo import operaciones_bd
-from PyQt5.Qt import QMessageBox, QTableWidget, QTableWidgetItem
+from PyQt5.Qt import QMessageBox, QTableWidget, QTableWidgetItem, QPushButton
+from _functools import partial
 
 #variable con el resultado de base de datos:
 lista_resultado=None
@@ -33,7 +34,7 @@ def mostrar_listar_prenda():
     lista_resultado=operaciones_bd.obtener_ropa()
     texto = ""
     for l in lista_resultado:
-        texto += "id: " + str(l[0]) + "prenda: " + l[1] + "talla: " + str(l[2]) + "color:" + l[3] + "temporada: " + l[4] + "precio:" +str(l[5]) + "\n"
+        texto += "id: " + str(l[0]) + " prenda: " + str(l[1]) + " talla: " + str(l[2]) + " color: " + str(l[3]) + " temporada: " + str(l[4]) + " precio: " +str(l[5]) + "\n"
     ui_listar.listar_prenda.setText(texto)
 
 
@@ -43,7 +44,7 @@ def mostrar_list_widget():
     lista_resultado = operaciones_bd.obtener_ropa()
     #voy a rellenar el list widget
     for l in lista_resultado:
-        ui_ventana_list_widget.list_widget_prenda.addItem(l[1] + "prenda: " + str(l[2]))
+        ui_ventana_list_widget.list_widget_prenda.addItem( " prenda: " + str(l[1])+ " talla: " + str(l[2]) + " color: " + str(l[3]) + " temporada: " + str(l[4]) + " precio: " +str(l[5]) + "\n")
     
     ui_ventana_list_widget.list_widget_prenda.itemClicked.connect(mostrar_registro)
 
@@ -52,11 +53,11 @@ def mostrar_list_widget():
 def mostrar_registro():
     indice_seleccionado = ui_ventana_list_widget.list_widget_prenda.currentRow()
     texto= ""
-    texto += "prenda: " + str(lista_resultado[indice_seleccionado][2]) + "\n"
-    texto += "talla: " + str(lista_resultado[indice_seleccionado][3]) + "\n"
-    texto += "color: " + str(lista_resultado[indice_seleccionado][4]) + "\n"
-    texto += "temporada: " + str(lista_resultado[indice_seleccionado][5]) + "\n"
-    texto += "precio: " + str(lista_resultado[indice_seleccionado][6])
+    texto += "prenda: " + str(lista_resultado[indice_seleccionado][1]) + "\n"
+    texto += "talla: " + str(lista_resultado[indice_seleccionado][2]) + "\n"
+    texto += "color: " + str(lista_resultado[indice_seleccionado][3]) + "\n"
+    texto += "temporada: " + str(lista_resultado[indice_seleccionado][4]) + "\n"
+    texto += "precio: " + str(lista_resultado[indice_seleccionado][5])
 
     QMessageBox.about(MainWindow,"INFO", texto)
 
@@ -64,25 +65,45 @@ def mostrar_registro():
 def mostrar_table_widget():
     ui_ventana_table_widget.setupUi(MainWindow)
 #vamos a rellenar la tabla:
-    prenda = operaciones_bd.obtener_ropa()
+    ropa = operaciones_bd.obtener_ropa()
     fila = 0
-    for l in prenda:
+    for l in ropa:
         ui_ventana_table_widget.table_ropa.insertRow(fila)
-        #celda para el id
-        celda = QTableWidgetItem(str(l[0]))
-        ui_ventana_table_widget.table_ropa.setItem(fila,0,celda)
-        #celda para el nombre:
-        celda = QTableWidgetItem(str(l[1]))
-        ui_ventana_table_widget.table_ropa.setItem(fila,1,celda)
-        #celda para las paginas:
-        celda = QTableWidgetItem(str(l[2]))
-        ui_ventana_table_widget.table_ropa.setItem(fila,2,celda)
-#celda para el precio:
-        celda = QTableWidgetItem(str(l[3]))
-        ui_ventana_table_widget.table_ropa.setItem(fila,3,celda)
-
-
+        columna_indice = 0
+        for valor in l:
+            celda = QTableWidgetItem(str(valor))
+            ui_ventana_table_widget.table_ropa.setItem(fila,columna_indice,celda)
+            columna_indice += 1
+        #despues de rellenar los datos en la fila
+        #voy a meter un boton para borrar 
+        boton_borrar = QPushButton("borrar")
+        boton_borrar.clicked.connect(partial(borrar_ropa,l[0]))
+        ui_ventana_table_widget.table_ropa.setCellWidget(fila,6,boton_borrar)
         fila += 1
+        
+def borrar_ropa(id):
+    res = QMessageBox.question(MainWindow, "Info", " Vas a borrar un registro de id:"+ str(id))
+    if res == QMessageBox.Yes:
+        operaciones_bd.borrar_ropa(id)
+        mostrar_table_widget()
+
+        #celda para el id
+        #celda = QTableWidgetItem(str(l[0]))
+        #ui_ventana_table_widget.table_ropa.setItem(fila,0,celda)
+        #celda para el nombre:
+        #celda = QTableWidgetItem(str(l[1]))
+        #ui_ventana_table_widget.table_ropa.setItem(fila,1,celda)
+        #celda para las paginas:
+        #celda = QTableWidgetItem(str(l[2]))
+        #ui_ventana_table_widget.table_ropa.setItem(fila,2,celda)
+#celda para el precio:
+        #celda = QTableWidgetItem(str(l[3]))
+        #ui_ventana_table_widget.table_ropa.setItem(fila,3,celda)
+        #celda = QTableWidgetItem(str(l[4]))
+        #ui_ventana_table_widget.table_ropa.setItem(fila,4,celda)
+        #celda = QTableWidgetItem(str(l[5]))
+        #ui_ventana_table_widget.table_ropa.setItem(fila,5,celda)
+        
 
 def mostrar_inicio():
     ui.setupUi(MainWindow)
