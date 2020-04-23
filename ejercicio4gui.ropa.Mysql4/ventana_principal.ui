@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>754</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(85, 255, 127);
+background-color: rgb(170, 85, 255);</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QLabel" name="label_ventana_principal">
+    <property name="geometry">
+     <rect>
+      <x>170</x>
+      <y>100</y>
+      <width>481</width>
+      <height>101</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Segoe Print</family>
+      <pointsize>24</pointsize>
+      <weight>50</weight>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Bienvenid@ a mi Tienda 
+ de Ropa de Moda</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>754</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuropa">
+    <property name="title">
+     <string>ropa</string>
+    </property>
+    <addaction name="submenu_insertar_prenda"/>
+    <addaction name="submenu_listar_prenda"/>
+    <addaction name="submenu_inicio"/>
+    <addaction name="submenu_list_widget"/>
+    <addaction name="submenu_table_widget"/>
+   </widget>
+   <addaction name="menuropa"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="submenu_insertar_prenda">
+   <property name="text">
+    <string>insertar_prenda</string>
+   </property>
+  </action>
+  <action name="submenu_listar_prenda">
+   <property name="text">
+    <string>listar_prenda</string>
+   </property>
+  </action>
+  <action name="submenu_inicio">
+   <property name="text">
+    <string>inicio</string>
+   </property>
+  </action>
+  <action name="submenu_list_widget">
+   <property name="text">
+    <string>list widget</string>
+   </property>
+  </action>
+  <action name="submenu_table_widget">
+   <property name="text">
+    <string>table widget</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1258</width>
+    <height>598</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(170, 85, 255);</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QTableWidget" name="table_ropa">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>130</y>
+      <width>1101</width>
+      <height>431</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 170, 255);</string>
+    </property>
+    <column>
+     <property name="text">
+      <string>id</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>prenda</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>talla</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>color</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>temporada</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>precio</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>digital</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>tipo</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>envio</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>borrar</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>editar</string>
+     </property>
+    </column>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>510</x>
+      <y>50</y>
+      <width>171</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>16</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>TABLA DE ROPA</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
